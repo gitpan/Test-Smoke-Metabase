@@ -1,0 +1,44 @@
+=head1 NAME
+
+Test::Smoke::Metabase - The interface for Test::Smoke to Metabase
+
+=head1 Description
+
+...
+
+=head1 PREREQUISITES
+
+Perl 5.6.0 and up.
+
+=head1 INSTALLATION
+
+  $ cpan Test::Smoke::Metabase
+
+  or
+
+  $ perl Makefile.PL
+  $ make test
+  $ make install
+
+Recent changes can be (re)viewed in the public GIT repository at
+http://repo.or.cz/w/Test-Smoke-Metabase.git
+
+Feel free to clone your own copy:
+
+ $ git clone http://repo.or.cz/r/Test-Smoke-Metabase.git Test-Smoke-Metabase
+
+or get it as a tgz:
+
+ $ wget --output-document=Test-Smoke-Metabase-git.tgz \
+	   'http://repo.or.cz/w/Test-Smoke-Metabase.git?a=snapshot;sf=tgz'
+
+=head1 AUTHOR
+
+H.Merijn Brand <h.m.brand@xs4all.nl>
+
+=head1 COPYRIGHT AND LICENSE
+
+Copyright (c) 2010-2010 H.Merijn Brand.  All rights reserved.
+
+This program is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself.

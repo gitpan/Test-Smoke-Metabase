@@ -1,0 +1,15 @@
+Changes
+lib/Test/Smoke/Fact/SmokeConfig.pm
+lib/Test/Smoke/Fact/SmokeID.pm
+lib/Test/Smoke/Fact/TestEnvironment.pm
+lib/Test/Smoke/Fact/TestResult.pm
+lib/Test/Smoke/Metabase.pm
+Makefile.PL
+MANIFEST
+MANIFEST.SKIP
+README
+t/10-TSM.t
+xt/00_pod.t
+xt/01_pod.t
+xt/10_perlversion.t
+META.yml                                 Module meta-data (added by MakeMaker)
