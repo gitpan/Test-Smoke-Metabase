@@ -5,12 +5,12 @@ use warnings;
 
 use base "Metabase::Fact::Hash";
 
-our $VERSION = "0.002";
+our $VERSION = "0.003";
 
 sub required_keys
 {
     qw( io_env
-	ouput
+	output
 	summary
 	);
     } # required_keys

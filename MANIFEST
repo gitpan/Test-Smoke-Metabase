@@ -4,11 +4,13 @@ lib/Test/Smoke/Fact/SmokeID.pm
 lib/Test/Smoke/Fact/TestEnvironment.pm
 lib/Test/Smoke/Fact/TestResult.pm
 lib/Test/Smoke/Metabase.pm
+lib/Test/Smoke/Metabase/Transport.pm
 Makefile.PL
 MANIFEST
 MANIFEST.SKIP
 README
 t/10-TSM.t
+t/20-report.t
 xt/00_pod.t
 xt/01_pod.t
 xt/10_perlversion.t

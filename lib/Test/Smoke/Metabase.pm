@@ -3,10 +3,13 @@ package Test::Smoke::Metabase;
 use strict;
 use warnings;
 
-our $VERSION = "0.02";
+our $VERSION = "0.03";
 
 use base "Metabase::Report";
 __PACKAGE__->load_fact_classes;
+
+use Carp;
+use Test::Smoke::Metabase::Transport;
 
 sub report_spec
 {
@@ -17,6 +20,23 @@ sub report_spec
 	"Test::Smoke::Fact::TestResult"		=> "0+",
 	};
     } # report_spec
+
+sub send
+{
+    my ($self, $dest) = @_;
+
+    ref $dest eq "HASH" && exists $dest->{uri} && exists $dest->{id_file} or
+	croak ("usage: \$report->send ({ uri => '...', id_file => '...')");
+
+    my $transport = Test::Smoke::Metabase::Transport->new (
+	transport	=> "Metabase",
+	transport_args	=> [
+	    uri		=> $dest->{uri},
+	    id_file	=> $dest->{id_file},
+	    ],
+	);
+    $transport->send ($self);
+    } # send
 
 1;
 
@@ -64,6 +84,11 @@ Test::Smoke::Metabase - Test::Smoke Metabase interface object
 
   $report->close ();
 
+  $report->send ({
+      uri          => "http://metabase.example.com:3000/",
+      id_file      => "/home/tux/smoke/metabase_id.json",
+      });
+
 =head1 DESCRIPTION
 
 Metabase report class encapsulating Facts about a Test::Smoke report
@@ -104,10 +129,14 @@ found in L<Test::Smoke::Fact::TestResult>.
 
 =end nopod
 
+=head2 send
+
+Will send the report using Test::Smoke::Metabase::Transport
+
 =head1 SEE ALSO
 
 L<Test::Smoke>, L<Test::Smoke::Fact::SmokeID>,
-L<Test::Smoke::Fact::TestEnvironment>, L<Test::Smoke::Fact::SmokeConfig>, 
+L<Test::Smoke::Fact::TestEnvironment>, L<Test::Smoke::Fact::SmokeConfig>,
 L<Test::Smoke::Fact::TestResult>, L<Metabase::Report>, L<Metabase::Fact>.
 
 =head1 AUTHOR
@@ -118,7 +147,7 @@ H.Merijn Brand
 
 Copyright (c) 2010 by H.Merijn Brand
 
-This library is free software; you can redistribute it and/or modify
-it under the same terms as Perl itself.
+This library is free software; you can redistribute it and/or modify it
+under the same terms as Perl itself.
 
 =cut

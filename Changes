@@ -1,3 +1,8 @@
+0.03 - Sun 11 Apr 2010 - H.Merijn Brand
+
+    - Fixed typo in TestResult attribute
+    - Add Test::Smoke::Metabase::Transport, so the report can be sent
+
 0.02 - Sun 11 Apr 2010 - H.Merijn Brand
 
     - Documentation
