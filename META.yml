@@ -1,6 +1,6 @@
 --- #YAML:1.0
 name:                         Test::Smoke::Metabase
-version:                      0.03
+version:                      0.10
 abstract:                     Metabase interface for Test::Smoke
 license:                      perl
 author:              
@@ -10,7 +10,7 @@ distribution_type:            module
 provides:
     Test::Smoke::Metabase:
         file:                 lib/Test/Smoke/Metabase.pm
-        version:              0.03
+        version:              0.10
     Test::Smoke::Fact::SmokeID:
         file:                 lib/Test/Smoke/Fact/SmokeID.pm
         version:              0.002
@@ -32,14 +32,16 @@ requires:
     Carp:                     0
     Digest::MD5:              0
     JSON:                     2
-    Metabase::Client::Simple: 0.004
-    Metabase::Fact::Hash:     0.003
-    Metabase::Fact::String:   0.003
-    Metabase::Report:         0.003
-    Metabase::User::Profile:  0.006
-    Metabase::User::Secret:   0.006
+    Metabase::Client::Simple: 0.006
+    Metabase::Fact:           0.012
+    Metabase::Fact::Hash:     0.012
+    Metabase::Fact::String:   0.012
+    Metabase::Report:         0.012
+    Metabase::User::Profile:  0.012
+    Metabase::User::Secret:   0.012
 recommends:
     perl:                     5.010001
+    JSON:                     2.21
 configure_requires:
     ExtUtils::MakeMaker:      0
 build_requires:

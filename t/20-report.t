@@ -3,12 +3,11 @@
 use strict;
 use warnings;
 
-use Test::More;
+use Test::More tests => 6;
 use Test::Smoke::Metabase;
 
 ok (my $report = Test::Smoke::Metabase->open (
-    resource     => "cpan:///distfile/JESSE/perl-5.12.0-RC5.tar.gz",
-    #"http://perl5.git.perl.org/perl.git/8c576062",
+    resource     => "perl:///commit/8c576062",
     ), "Initiate report");
 
 ok ($report->add ("Test::Smoke::Fact::SmokeID" => {
@@ -43,6 +42,4 @@ ok ($report->add ("Test::Smoke::Fact::TestResult" => {
     summary      => "F",
     }), "Add TestResult");
 
-ok ($report->close ());
-
-done_testing;
+ok ($report->close (), "Close");

@@ -3,7 +3,7 @@ package Test::Smoke::Metabase;
 use strict;
 use warnings;
 
-our $VERSION = "0.03";
+our $VERSION = "0.10";
 
 use base "Metabase::Report";
 __PACKAGE__->load_fact_classes;
@@ -29,11 +29,8 @@ sub send
 	croak ("usage: \$report->send ({ uri => '...', id_file => '...')");
 
     my $transport = Test::Smoke::Metabase::Transport->new (
-	transport	=> "Metabase",
-	transport_args	=> [
-	    uri		=> $dest->{uri},
-	    id_file	=> $dest->{id_file},
-	    ],
+	uri	=> $dest->{uri},
+	id_file	=> $dest->{id_file},
 	);
     $transport->send ($self);
     } # send
@@ -49,7 +46,7 @@ Test::Smoke::Metabase - Test::Smoke Metabase interface object
 =head1 SYNOPSIS
 
   my $report = Test::Smoke::Metabase->open (
-      resource => "http://perl5.git.perl.org/perl.git/8c576062",
+      resource => "perl:///commit/8c576062",
       );
 
   $report->add (Test::Smoke::Fact::SmokeID => {
