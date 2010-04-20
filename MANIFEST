@@ -1,8 +1,9 @@
 Changes
-lib/Test/Smoke/Fact/SmokeConfig.pm
+lib/Test/Smoke/Fact/Build.pm
+lib/Test/Smoke/Fact/Config.pm
+lib/Test/Smoke/Fact/Node.pm
+lib/Test/Smoke/Fact/Result.pm
 lib/Test/Smoke/Fact/SmokeID.pm
-lib/Test/Smoke/Fact/TestEnvironment.pm
-lib/Test/Smoke/Fact/TestResult.pm
 lib/Test/Smoke/Metabase.pm
 lib/Test/Smoke/Metabase/Transport.pm
 Makefile.PL

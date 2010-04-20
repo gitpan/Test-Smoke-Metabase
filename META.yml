@@ -1,6 +1,6 @@
 --- #YAML:1.0
 name:                         Test::Smoke::Metabase
-version:                      0.10
+version:                      0.20
 abstract:                     Metabase interface for Test::Smoke
 license:                      perl
 author:              
@@ -10,19 +10,22 @@ distribution_type:            module
 provides:
     Test::Smoke::Metabase:
         file:                 lib/Test/Smoke/Metabase.pm
-        version:              0.10
+        version:              0.20
     Test::Smoke::Fact::SmokeID:
         file:                 lib/Test/Smoke/Fact/SmokeID.pm
-        version:              0.002
-    Test::Smoke::Fact::TestEnvironment:
-        file:                 lib/Test/Smoke/Fact/TestEnvironment.pm
-        version:              0.002
-    Test::Smoke::Fact::SmokeConfig:
-        file:                 lib/Test/Smoke/Fact/SmokeConfig.pm
-        version:              0.002
-    Test::Smoke::Fact::TestResult:
-        file:                 lib/Test/Smoke/Fact/TestResult.pm
-        version:              0.003
+        version:              0.010
+    Test::Smoke::Fact::Node:
+        file:                 lib/Test/Smoke/Fact/Node.pm
+        version:              0.010
+    Test::Smoke::Fact::Build:
+        file:                 lib/Test/Smoke/Fact/Build.pm
+        version:              0.010
+    Test::Smoke::Fact::Config:
+        file:                 lib/Test/Smoke/Fact/Config.pm
+        version:              0.010
+    Test::Smoke::Fact::Result:
+        file:                 lib/Test/Smoke/Fact/Result.pm
+        version:              0.010
     Test::Smoke::Metabase::Transport:
         file:                 lib/Test/Smoke/Metabase/Transport.pm
         version:              0.01
@@ -30,12 +33,9 @@ requires:
     perl:                     5.006
     base:                     2.14
     Carp:                     0
-    Digest::MD5:              0
     JSON:                     2
     Metabase::Client::Simple: 0.006
-    Metabase::Fact:           0.012
-    Metabase::Fact::Hash:     0.012
-    Metabase::Fact::String:   0.012
+    Metabase::Fact::Hash:     0.013
     Metabase::Report:         0.012
     Metabase::User::Profile:  0.012
     Metabase::User::Secret:   0.012

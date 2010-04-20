@@ -1,11 +1,11 @@
-package Test::Smoke::Fact::TestResult;
+package Test::Smoke::Fact::Result;
 
 use strict;
 use warnings;
 
 use base "Metabase::Fact::Hash";
 
-our $VERSION = "0.003";
+our $VERSION = "0.010";
 
 sub required_keys
 {
@@ -15,30 +15,42 @@ sub required_keys
 	);
     } # required_keys
 
+sub optional_keys
+{
+    qw( statistics
+	locale
+	);
+    } # optional_keys
+
 # Optional future validation:
-# io_env: "", "stdio", "perlio", "lang"
-# output: non-empty
-# summary: "O", "F", "X", "c", "M", "m", "t", "-"
+# io_env: "stdio", "perlio", "locale"
+# summary: "O", "F", or "X"
+#   "c", "M", "m", "t", "-" should end up in Fact::Build
+sub validate_content
+{
+    my $self = shift;
+
+    my $content = $self->content;
+    $content->{io_env}     ||= "perlio";
+    $content->{summary} =~ m/^[-OFXcMmt?]$/ or $content->{summary} = "?";
+    $self->SUPER::validate_content;
+    } # validate_content
 
 sub content_metadata
 {
     my $self = shift;
     my $content = $self->content;
 
-    return {
-	io_env	=> $content->{io_env},
-	output	=> $content->{output},
-	summary	=> $content->{summary},
-	};
+    return { map { $_ => $content->{$_} }
+	$self->required_keys, $self->optional_keys };
     } # content_metadata
 
 sub content_metadata_types
 {
-    return {
-	io_env	=> "//str",
-	output	=> "//str",
-	summary	=> "//str",
-	};
+    my $self = shift;
+
+    return { map { $_ => "//str" }
+	$self->required_keys, $self->optional_keys };
     } # content_metadata_types
 
 1;
@@ -47,16 +59,17 @@ __END__
 
 =head1 NAME
 
-Test::Smoke::Fact::TestResult - The output for a Test::Smoke report
+Test::Smoke::Fact::Result - The output for a Test::Smoke report
 
 =head1 SYNOPSIS
 
   my $fact = Test::Smoke::Fact::TestOutput->new (
       resource => "http://perl5.git.perl.org/perl.git/8c576062",
       content  => {
-          io_env  => "perlio",
-          summary => "F",
-          output  => $output,
+          io_env     => "perlio",
+          summary    => "F",
+          output     => $output,
+          statistics => "Files=1802, Tests=349808, 228 wallcl...",
           },
       );
 
@@ -77,12 +90,20 @@ run, e.g. "nl_NL.utf8".
 =item summary
 
 This item describes the final state of the smoke. Possible values
-are "O", "F", "X", "c", "M", "m", "-", and "?". They are documented
-in Test::Smoke.
+are "O", "F", "X", "c", "M", "m", "t", "-", and "?". They are
+documented in Test::Smoke.
 
 =item output
 
 This is the complete output caught during a smoke test run.
+
+=item statistics
+
+This item optionally holds the line that reflects the test run
+statistics, like:
+
+  Files=1802, Tests=349808, 228 wallclock secs ...
+    (43.03 usr 11.80 sys + 269.61 cusr 38.35 csys = 362.79 CPU)
 
 =back
 
