@@ -36,7 +36,7 @@ sub content_metadata
     my $self = shift;
     my $content = $self->content;
 
-    return { map { $_ => $content->{$_} }
+    return { map { $_ => $content->{$_} } grep { !m/patches/ }
 	$self->required_keys, $self->optional_keys };
     } # content_metadata
 
@@ -44,7 +44,7 @@ sub content_metadata_types
 {
     my $self = shift;
 
-    return { map { $_ => "//str" }
+    return { map { $_ => "//str" } grep { !m/patches/ }
 	$self->required_keys, $self->optional_keys };
     } # content_metadata_types
 

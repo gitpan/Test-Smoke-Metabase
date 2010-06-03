@@ -3,7 +3,7 @@ package Test::Smoke::Metabase;
 use strict;
 use warnings;
 
-our $VERSION = "0.20";
+our $VERSION = "0.21";
 
 use base "Metabase::Report";
 __PACKAGE__->load_fact_classes;
@@ -47,13 +47,13 @@ Test::Smoke::Metabase - Test::Smoke Metabase interface object
 =head1 SYNOPSIS
 
   my $report = Test::Smoke::Metabase->open (
-      resource        => "perl:///commit/8c576062",
+      resource        => "perl:///commit/8c57606294f48eb065dff03f7ffefc1e4e2cdce4",
       );
 
   $report->add ("Test::Smoke::Fact::SmokeID" => {
       smoke_date      => "20100528",
       perl_id         => "5.12.2-RC4",
-      git_id          => "8c57606294f48eb065dff03f7ffefc1e4e2cdce4",
+      git_id          => "8c576062",
       applied_patches => "-",
       });
 
@@ -90,7 +90,7 @@ Test::Smoke::Metabase - Test::Smoke Metabase interface object
       statistics      => "Files=1802, Tests=349808, 228 wallcl...",
       });
 
-  $report->close (), "Close");
+  $report->close ();
 
   $report->send ({
       uri          => "http://metabase.example.com:3000/",

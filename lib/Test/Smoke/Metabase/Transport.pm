@@ -46,21 +46,30 @@ sub new
     return bless \%args => $class;
     } # new
 
+# Local cache
+my %id_file;
+my %clients;
+
 sub send
 {
-    my ($self, $report)    = @_; # $report should be a Test::Smoke::Metabase obj
-    my ($profile, $secret) = $self->_load_id_file;
+    my ($self, $report) = @_; # $report should be a Test::Smoke::Metabase obj
+
+    my $id_file = $self->{id_file};
+    $id_file{$id_file} ||= [ $self->_load_id_file ];
+    my ($profile, $secret) = @{$id_file{$id_file}};
 
     # Load specified metabase client.
     my $class = $self->{client};
     eval "require $class" or
 	Carp::confess __PACKAGE__ . ": could not load client '$class':\n$@\n";
 
-    my $client = $class->new (
-	uri     => $self->{uri},
+    my $uri = $self->{uri};
+    $clients{$id_file}{$uri} ||= $class->new (
+	uri     => $uri,
 	profile => $profile,
 	secret  => $secret,
 	);
+    my $client = $clients{$id_file}{$uri};
 
     return $client->submit_fact ($report);
     } # send

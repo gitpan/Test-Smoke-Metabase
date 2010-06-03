@@ -1,3 +1,9 @@
+0.21 - Wed 02 Jun 2010 - H.Merijn Brand
+
+    - Excluded "big" entries from metadata (index)
+    - Cache parts in Transport layer to avoid unneeded IO
+    - Fix some doc flaws
+
 0.20 - Mon 19 Apr 2010 - H.Merijn Brand
 
     - New setup

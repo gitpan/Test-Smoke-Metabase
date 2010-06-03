@@ -14,3 +14,4 @@ tmp/
 ^xx
 META.yml
 TODO
+xt/10_perlversion.t
