@@ -8,7 +8,8 @@ use strict;
 use ExtUtils::MakeMaker;
 
 my %wm = (
-    NAME           => "Test-Smoke-Metabase",
+    NAME           => "Test::Smoke::Metabase",
+    DISTNAME       => "Test-Smoke-Metabase",
     ABSTRACT       => "Metabase interface for Test::Smoke",
     AUTHOR         => "H.Merijn Brand <h.merijn\@xs4all.nl>",
     VERSION_FROM   => "lib/Test/Smoke/Metabase.pm",

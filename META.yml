@@ -1,6 +1,6 @@
 --- #YAML:1.0
 name:                         Test-Smoke-Metabase
-version:                      0.22
+version:                      0.23
 abstract:                     Metabase interface for Test::Smoke
 license:                      perl
 author:
@@ -10,7 +10,7 @@ distribution_type:            module
 provides:
     Test::Smoke::Metabase:
         file:                 lib/Test/Smoke/Metabase.pm
-        version:              0.22
+        version:              0.23
     Test::Smoke::Fact::SmokeID:
         file:                 lib/Test/Smoke/Fact/SmokeID.pm
         version:              0.011

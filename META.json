@@ -13,7 +13,7 @@
       },
    "distribution_type" : "module",
    "generated_by" : "Author",
-   "version" : "0.22",
+   "version" : "0.23",
    "name" : "Test-Smoke-Metabase",
    "author" : [
       "H.Merijn Brand <h.m.brand@xs4all.nl>"
@@ -41,7 +41,7 @@
          "file" : "lib/Test/Smoke/Fact/Config.pm"
          },
       "Test::Smoke::Metabase" : {
-         "version" : "0.22",
+         "version" : "0.23",
          "file" : "lib/Test/Smoke/Metabase.pm"
          },
       "Test::Smoke::Fact::Node" : {

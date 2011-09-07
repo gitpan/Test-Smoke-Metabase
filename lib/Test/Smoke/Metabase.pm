@@ -3,7 +3,7 @@ package Test::Smoke::Metabase;
 use strict;
 use warnings;
 
-our $VERSION = "0.22";
+our $VERSION = "0.23";
 
 use base "Metabase::Report";
 __PACKAGE__->load_fact_classes;
