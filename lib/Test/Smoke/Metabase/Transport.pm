@@ -186,7 +186,7 @@ The C<send> method transmits the report.
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is Copyright (c) 2010 by H.Merijn Brand
+This software is Copyright (c) 2010-2011 by H.Merijn Brand
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself.

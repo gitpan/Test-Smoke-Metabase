@@ -1,3 +1,13 @@
+0.22 - Wed 07 Sep 2011 - H.Merijn Brand
+
+    - Spell check
+    - Upped copyright to 2011
+    - Added debugging       to Fact::Config
+    - Added git_describe    to Fact::SmokeID
+    - Added cpu_count       to Fact::Node
+    - Added cpu_description to Fact::Node
+    - More cross-checks for META data
+
 0.21 - Wed 02 Jun 2010 - H.Merijn Brand
 
     - Excluded "big" entries from metadata (index)

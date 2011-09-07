@@ -11,17 +11,20 @@ ok (my $report = Test::Smoke::Metabase->open (
     ), "Initiate report");
 
 ok ($report->add ("Test::Smoke::Fact::SmokeID" => {
-    smoke_date      => "20100528",
-    perl_id         => "5.12.2-RC4",
-    git_id          => "8c57606294f48eb065dff03f7ffefc1e4e2cdce4",
+    smoke_date      => "2011-04-17 13:41:14",
+    git_id          => "1f656fcf060e343780f7a91a2ce567e8a9de9414",
+    git_describe    => "5.13.11-452-g1f656fc",
+    perl_id         => "5.14.0",
     applied_patches => "-",
     }), "Add SmokeID");
 
 ok ($report->add ("Test::Smoke::Fact::Node" => {
     hostname        => "smokebox",
-    architecture    => "pa_risc-2.0",
+    architecture    => "ia64",
     osname          => "HP-UX",
-    osversion       => "11.31",
+    osversion       => "B.11.31/64",
+    cpu_count       => 2,
+    cpu_description => "Itanium 2 9100/1710",
     cc              => "cc",
     ccversion       => "B3910B",
     user            => "tux",
@@ -41,6 +44,7 @@ ok ($report->add ("Test::Smoke::Fact::Build" => {
 ok ($report->add ("Test::Smoke::Fact::Config" => {
     arguments       => "-Duse64bitall -DDEBUGGING",
     parallel        => 1,
+    debugging       => 1,
     }), "Add Config");
 
 foreach my $io (qw( stdio perlio locale )) {

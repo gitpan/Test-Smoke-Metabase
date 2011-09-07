@@ -5,12 +5,13 @@ use warnings;
 
 use base "Metabase::Fact::Hash";
 
-our $VERSION = "0.010";
+our $VERSION = "0.011";
 
 sub required_keys
 {
     qw( arguments
 	parallel
+	debugging
 	);
     } # required_keys
 
@@ -27,6 +28,7 @@ sub validate_content
     my $content = $self->content;
     $content->{arguments} ||= "[default]";
     $content->{parallel}  ||= 0;
+    $content->{debugging} ||= 0;
     $self->SUPER::validate_content;
     } # validate_content
 
@@ -62,6 +64,7 @@ Test::Smoke::Fact::Config - The Configuration for a Test::Smoke report
       content  => {
           arguments => "-Duse64bitall -DDEBUGGING",
           parallel  => 1,
+          debugging => 1,
           },
       );
 
@@ -90,7 +93,7 @@ H.Merijn Brand
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright (c) 2010 by H.Merijn Brand
+Copyright (c) 2011 by H.Merijn Brand
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself.

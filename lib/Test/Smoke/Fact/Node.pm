@@ -5,7 +5,7 @@ use warnings;
 
 use base "Metabase::Fact::Hash";
 
-our $VERSION = "0.010";
+our $VERSION = "0.011";
 
 sub required_keys
 {
@@ -20,7 +20,9 @@ sub required_keys
 
 sub optional_keys
 {
-    qw( user
+    qw( cpu_count
+	cpu_description
+	user
 	);
     } # optional_keys
 
@@ -62,17 +64,16 @@ Test::Smoke::Fact::SmokeID - The run environment for a Test::Smoke report
   my $fact = Test::Smoke::Fact::SmokeID->new (
       resource => "http://perl5.git.perl.org/perl.git/8c576062",
       content  => {
-	  perl_id      => "5.12.2-RC4",
-	  hostname     => "smokebox",
-	  architecture => "PA-RISC2.0/64/2 cpu",
-	  osname       => "HP-UX",
-	  osversion    => "11.31",
-	  cc           => "cc",
-	  ccversion    => "B3910B",
-	  parallel     => 1,
-	  user         => "tux",
-	  smoke_date   => "2010-05-28 12:13:14 +01",
-	  },
+          hostname        => "smokebox",
+          architecture    => "ia64",
+          osname          => "HP-UX",
+          osversion       => "B.11.31/64",
+          cpu_count       => 2,
+          cpu_description => "Itanium 2 9100/1710",
+          cc              => "cc",
+          ccversion       => "B3910B",
+          user            => "tux",
+          },
       );
 
 =head1 DESCRIPTION
@@ -81,20 +82,6 @@ These facts identify a smoke. With this ID, one should be able to
 find all other facts that belong to a single smoke run.
 
 =over 4
-
-=item git_id
-
-This item describes the long form of the git SHA1 hash id of the perl
-checkout that is being smoked.
-
- e.g. "8c57606294f48eb065dff03f7ffefc1e4e2cdce4"
-
-=item perl_id
-
-This item describes the perl version (or tag) of the perl checkout that
-is being smoked.
-
- e.g. "5.12.2-RC4"
 
 =item hostname
 
@@ -107,7 +94,7 @@ This item describes the host name of the machine on which the smoke runs.
 This item describes, as completely as possible, the architecture of the
 system on which the smoke runs.
 
- e.g. "PA-RISC2.0/64/2 cpu"
+ e.g. "ia64"
 
 This information is an aggregation of what Test::Smoke was able to gather,
 in above example, a PA-RISC 2.0 64bit architecture with 2 CPU's. The format
@@ -125,7 +112,7 @@ be the same as C<$^O>.
 
 This item describes the operating system version.
 
- e.g. "11.31"
+ e.g. "B.11.31/64"
 
 =item cc
 
@@ -140,42 +127,29 @@ This item describes the version of the C-compiler
 
  e.g. "B3910B"
 
-=item parallel
+=item cpu_count
 
-This item (a boolean) indicates that the core tests are run in parallel.
-This was done by passing some C<-j#> option to C<Test::Harness>.
+This optional item describes the number of CPU's that were found for
+this smoke. It does not tell how many were actually used.
+
+ e.g. 2
+
+=item cpu_description
+
+This optional item describes the CPU(s) that were found for this smoke.
+
+ e.g. "Intel(R) Core(TM) i5 CPU M 540 @ 2.53GHz (GenuineIntel 1199MHz)"
 
 =item user
 
-This item describes the name of the I<user> who ran the smoke.
+This optional item describes the name of the I<user> who ran the smoke.
 
  e.g. "tux"
-
-=item smoke_date
-
-This item describes the date (and time), preferably in ISO norm.
-
- e.g. "2010-05-28T12:13:14+01"
 
 =item smoke_id
 
 This item should be a MD5 hash of the above items, but it is possible to
 pass one. Unless one is passed, it is automatically generated.
-
-=item applied_patches
-
-This optional item describes what additional patches have been applied
-before the smoke started.
-
-=item manifest_msgs
-
-If there are warnings regarding the MANIFEST, this optional item will
-store them.
-
-=item skipped_tests
-
-If tests are generally skipped for this smoke, this optional item will
-reflect the list of skipped tests.
 
 =back
 
@@ -190,7 +164,7 @@ H.Merijn Brand
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright (c) 2010 by H.Merijn Brand
+Copyright (c) 2010-2011 by H.Merijn Brand
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself.

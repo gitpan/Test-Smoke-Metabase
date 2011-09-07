@@ -5,7 +5,7 @@ use warnings;
 
 use base "Metabase::Fact::Hash";
 
-our $VERSION = "0.010";
+our $VERSION = "0.011";
 $VERSION = eval $VERSION; ## no critic
 
 sub required_keys
@@ -13,13 +13,13 @@ sub required_keys
     qw( smoke_date
 	perl_id
 	git_id
-	applied_patches
+	git_describe
 	);
     } # required_keys
 
 sub optional_keys
 {
-    qw( 
+    qw( applied_patches
 	);
     } # optional_keys
 
@@ -61,11 +61,12 @@ Test::Smoke::Fact::SmokeID - The run environment for a Test::Smoke report
   my $fact = Test::Smoke::Fact::SmokeID->new (
       resource => "http://perl5.git.perl.org/perl.git/8c576062",
       content  => {
-	  smoke_date      => "2010-05-28 12:13:14 +01",
-          git_id          => "8c57606294f48eb065dff03f7ffefc1e4e2cdce4",
-	  perl_id         => "5.12.2-RC4",
-	  applied_patches => "-",
-	  },
+          smoke_date      => "2011-04-17 13:41:14 +01",
+          git_id          => "1f656fcf060e343780f7a91a2ce567e8a9de9414",
+          git_describe    => "5.13.11-452-g1f656fc",
+          perl_id         => "5.14.0",
+          applied_patches => "-",
+          },
       );
 
 =head1 DESCRIPTION
@@ -84,14 +85,21 @@ This item describes the date (and time), preferably in ISO norm.
 This item describes the long form of the git SHA1 hash id of the perl
 checkout that is being smoked.
 
- e.g. "8c57606294f48eb065dff03f7ffefc1e4e2cdce4"
+ e.g. "1f656fcf060e343780f7a91a2ce567e8a9de941"
+
+=head2 git_describe
+
+This item describes the string that C<git describe hash> would give for
+the perl checkout that is being smoked.
+
+ e.g. "5.13.11-452-g1f656fc"
 
 =head2 perl_id
 
 This item describes the perl version (or tag) of the perl checkout that
 is being smoked.
 
- e.g. "5.12.2-RC4"
+ e.g. "5.14.0"
 
 =head2 smoke_id
 
@@ -114,7 +122,7 @@ H.Merijn Brand
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright (c) 2010 by H.Merijn Brand
+Copyright (c) 2010-2011 by H.Merijn Brand
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself.

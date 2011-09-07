@@ -126,7 +126,7 @@ H.Merijn Brand
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright (c) 2010 by H.Merijn Brand
+Copyright (c) 2010-2011 by H.Merijn Brand
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself.

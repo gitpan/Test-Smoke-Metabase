@@ -3,7 +3,7 @@ package Test::Smoke::Metabase;
 use strict;
 use warnings;
 
-our $VERSION = "0.21";
+our $VERSION = "0.22";
 
 use base "Metabase::Report";
 __PACKAGE__->load_fact_classes;
@@ -51,17 +51,20 @@ Test::Smoke::Metabase - Test::Smoke Metabase interface object
       );
 
   $report->add ("Test::Smoke::Fact::SmokeID" => {
-      smoke_date      => "20100528",
-      perl_id         => "5.12.2-RC4",
-      git_id          => "8c576062",
+      smoke_date      => "2011-04-17 13:41:14 +01",
+      git_id          => "1f656fcf060e343780f7a91a2ce567e8a9de9414",
+      perl_id         => "5.14.0",
+      git_describe    => "5.13.11-452-g1f656fc",
       applied_patches => "-",
       });
 
   $report->add ("Test::Smoke::Fact::Node" => {
       hostname        => "smokebox",
-      architecture    => "pa_risc-2.0",
+      architecture    => "ia64",
       osname          => "HP-UX",
-      osversion       => "11.31",
+      osversion       => "B.11.31/64",
+      cpu_count       => 2,
+      cpu_description => "Itanium 2 9100/1710",
       cc              => "cc",
       ccversion       => "B3910B",
       user            => "tux",
@@ -81,6 +84,7 @@ Test::Smoke::Metabase - Test::Smoke Metabase interface object
   $report->add ("Test::Smoke::Fact::Config" => {
       arguments       => "-Duse64bitall -DDEBUGGING",
       parallel        => 1,
+      debugging       => 1,
       });
 
   $report->add ("Test::Smoke::Fact::Result" => {
@@ -133,6 +137,10 @@ For each configuration smoked in a full smoke run, this describes the
 configuration for the C<Result>'s (if available).  A more detailed
 description can be found in L<Test::Smoke::Fact::Config>.
 
+Note that the C<parallel> attribute logically would fit better in the
+C<Build> Fact, but that it is stored in C<Config> Fact for indexing
+(and searching) purposes.
+
 =head2 Result
 
 These are the results for a finished test run. It will hold as much
@@ -162,7 +170,7 @@ H.Merijn Brand
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright (c) 2010 by H.Merijn Brand
+Copyright (c) 2010-2011 by H.Merijn Brand
 
 This library is free software; you can redistribute it and/or modify it
 under the same terms as Perl itself.
